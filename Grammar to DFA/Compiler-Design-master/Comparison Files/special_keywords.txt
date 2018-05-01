@@ -1,0 +1,13 @@
+cin
+conio.h
+cout
+fstream
+iostream
+main
+list
+pair
+std
+stdio.h
+stdlib.h
+string
+vector

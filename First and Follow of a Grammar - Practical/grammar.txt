@@ -1,0 +1,21 @@
+E->TE'
+E'->+TE'/#
+T->FT'
+T'->*FT'/#
+F->id
+
+-------------------------
+Replaced E with S
+Replaced E' with A
+Replaced T' with B
+
+S->TA
+A->+TA/#
+T->FB
+B->*FB/#
+F->id
+
+-------------------------
+
+S->L/x
+L->S/L,S

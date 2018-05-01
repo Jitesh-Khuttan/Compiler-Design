@@ -116,7 +116,7 @@ set<char> calculateFollow(char followChar)
 							therefore giving segmentation fault */
 							if(currentProduction[k-1] == it->first)	
 							{
-								cout<<"\n\tAvoided Recursive Call";
+								//cout<<"\n\tAvoided Recursive Call";
 								return followSymbols;
 							}
 							set<char> followReturned = calculateFollow(it->first);
@@ -133,7 +133,7 @@ set<char> calculateFollow(char followChar)
 						therefore giving segmentation fault */
 						if(currentProduction[k-1] == it->first)	
 						{
-							cout<<"\n\tAvoided Recursive Call";
+							//cout<<"\n\tAvoided Recursive Call";
 							return followSymbols;
 						}
 
@@ -282,22 +282,67 @@ int main()
 		table[it->first] = columnMap;
 	}
 
+	//Generating Table in form of an array.
+//	int columnSize = terminals.size() + 1;
+//	int rowSize = nonTerminals.size();
+////	cout<<"\n\tRowSize: "<<rowSize<<" ColumnSize: "<<columnSize;
+////	string finalTable[rowSize][columnSize];
+//	map<char,int> rowMap;
+//	for(int i = 0; i < rowSize;i++)
+//	{
+//		rowMap[nonTerminals[i]] = i;
+//	}
+//
+//	map<char,int> columnMap;
+//	int i=0;
+//	for(auto it = terminals.begin();it != terminals.end();it++)
+//	{
+//		columnMap[*it] = i;
+//		i++;
+//	}
+//	
+//	vector< vector<string> > outer;
+
 	//Printing the table
 	bool ambiguity = false;
 	for(auto it = table.begin();it != table.end();it++)
 	{
-		cout<<"\n\t";
-		cout<<"\n\tRow: "<< it->first;
+		char row = it->first;
+		 cout<<"\n\t";
+		 cout<<"\n\tRow: "<< it->first;
 		for(auto l = (it->second).begin();l != (it->second).end();l++)
 		{
+			char column = l->first;
 			cout<<"\n\tColumn: "<<l->first;
 			cout<<"\n\tValues: ";
 			if((l->second).size() > 1)
 				ambiguity = true;
 			for(int counter = 0;counter< (l->second).size();counter++)
-				cout<<(l->second)[counter]<<" ";
+				 cout<<(l->second)[counter]<<" ";
+//				outer[rowMap[row]][columnMap[column]] = l->second[counter];
 		}
 	}
+
+//	cout<<"\n\t";
+//	for(auto it = terminals.begin();it!=terminals.end();it++)
+//	{
+//		cout<<*it<<"\t\t";
+//	}
+//
+//	//Printing the Table
+//	for(int i=0;i<rowSize;i++)
+//	{
+//		cout<<"\n\t"<<nonTerminals[i];
+//		for(int j=0;j<columnSize;j++)
+//		{
+//			for(int k=0;k<outer[i][j].size();k++)
+//			{
+//				cout<<outer[i][j][k]<<"\t";
+//			}
+//		}
+//	}
+
+
 	cout<<"\n\t";
 	if(ambiguity)
 		cout<<"\n\tGrammar is Ambigious. Parser Cannot Parse The Grammar";
